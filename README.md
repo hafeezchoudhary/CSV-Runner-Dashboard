@@ -1,5 +1,8 @@
 # CSV Runner Dashboard (Next.js)
 
+# Live Demo
+https://runnerdashboard.vercel.app/
+
 ## Project overview
 This is an implementation of the "CSV Runner Dashboard" assignment. Users upload CSVs with `date, person, miles run`. The app validates the CSV, shows overall and per-person metrics, provides charts (bar & line), and a data preview.
 
