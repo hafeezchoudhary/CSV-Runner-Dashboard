@@ -1,4 +1,3 @@
-// components/ErrorList.js
 export default function ErrorList({ errors = [] }) {
   if (!errors || !errors.length) return null;
   return (

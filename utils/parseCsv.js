@@ -1,10 +1,5 @@
-// utils/parseCsv.js
 import Papa from "papaparse";
 
-/**
- * Expected header names (exact): date, person, miles run
- * Returns: { data: Array, errors: Array }
- */
 export function parseAndValidateCSV(fileOrText) {
   return new Promise((resolve) => {
     const config = {
@@ -46,7 +41,7 @@ export function parseAndValidateCSV(fileOrText) {
             rowErrors.push(`Missing person at line ${line}`);
           }
 
-          // miles run numeric
+          // miles run in number form
           const milesRaw = (r["miles run"] || "").toString().trim();
           const miles = Number(milesRaw);
           if (milesRaw === "" || Number.isNaN(miles) || miles < 0) {

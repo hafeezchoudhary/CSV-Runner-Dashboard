@@ -1,4 +1,3 @@
-// components/ChartsPanel.js
 "use client";
 import { useState } from "react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, Bar, BarChart, CartesianGrid } from "recharts";
@@ -24,7 +23,7 @@ export default function ChartsPanel({ data, perPersonView = null }) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
 
-      {/* Bar Chart */}
+      {/* bar chart */}
       <div className="bg-white p-4 rounded shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
         <h3 className="text-sm font-medium mb-2">Total Miles by Date (bar)</h3>
         <div style={{ width: "100%", height: 260 }}>
@@ -41,7 +40,7 @@ export default function ChartsPanel({ data, perPersonView = null }) {
         </div>
       </div>
 
-      {/* Per-Person Line Chart */}
+      {/* per-person line chart */}
       <div className="bg-white p-4 rounded shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
         <h3 className="text-sm font-medium mb-2">Per-Person over time (line)</h3>
 
@@ -51,9 +50,8 @@ export default function ChartsPanel({ data, perPersonView = null }) {
             <button
               key={p}
               onClick={() => setSelectedPerson(p)}
-              className={`px-3 py-1 text-sm font-medium rounded ${
-                selectedPerson === p ? "bg-blue-500 text-white" : "bg-slate-100 text-slate-700"
-              }`}
+              className={`px-3 py-1 text-sm font-medium rounded ${selectedPerson === p ? "bg-blue-500 text-white" : "bg-slate-100 text-slate-700"
+                }`}
             >
               {p}
             </button>

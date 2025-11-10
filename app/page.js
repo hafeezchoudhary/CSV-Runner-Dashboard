@@ -55,67 +55,65 @@ export default function Page() {
 
   return (
     <main className="min-h-screen p-6 md:p-10 flex items-center justify-center">
-  {rows.length === 0 ? (
-    // Centered UploadCard before uploading
-    
-    <div className="max-w-md w-full">
-      <header className="mb-8 text-center w-full">
-        <h1 className="text-3xl font-bold">Upload Your Running Data</h1>
-        <p className="text-slate-500 mt-1">
-          Import your CSV file to visualize running metrics, track progress, and compare performance across runners
-        </p>
-      </header>
-      <UploadCard onData={setRows} setErrors={setErrors} />
-      {errors.length > 0 && <ErrorList errors={errors} />}
-      
-    </div>
-  ) : (
-    // Dashboard after upload
-    <div className="max-w-6xl w-full mx-auto mt-18">
-      <header className="mb-8 text-center w-full">
-        <h1 className="text-3xl font-bold text-[#2554c7]">Upload Your Running Data</h1>
-        <p className="text-slate-500 mt-1">
-          Import your CSV file to visualize running metrics, track progress, and compare performance across runners
-        </p>
-      </header>
-      <div className="grid gap-6 md:grid-cols-3">
-        <div className="md:col-span-1 space-y-6">
+      {rows.length === 0 ? (
+        <div className="max-w-md w-full">
+          <header className="mb-8 text-center w-full">
+            <h1 className="text-3xl font-bold text-[#2554c7]">Upload Your Running Data</h1>
+            <p className="text-slate-500 mt-1">
+              Import your CSV file to visualize running metrics, track progress, and compare performance across runners
+            </p>
+          </header>
           <UploadCard onData={setRows} setErrors={setErrors} />
           {errors.length > 0 && <ErrorList errors={errors} />}
+
         </div>
+      ) : (
+        // Dashboard after upload
+        <div className="max-w-6xl w-full mx-auto mt-18">
+          <header className="mb-8 text-center w-full">
+            <h1 className="text-3xl font-bold text-[#2554c7]">Upload Your Running Data</h1>
+            <p className="text-slate-500 mt-1">
+              Import your CSV file to visualize running metrics, track progress, and compare performance across runners
+            </p>
+          </header>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="md:col-span-1 space-y-6">
+              <UploadCard onData={setRows} setErrors={setErrors} />
+              {errors.length > 0 && <ErrorList errors={errors} />}
+            </div>
 
-        <div className="md:col-span-2 space-y-6">
-          <SummaryMetrics overall={metrics.overall} perPerson={metrics.perPerson} />
-          <ChartsPanel data={rows} />
+            <div className="md:col-span-2 space-y-6">
+              <SummaryMetrics overall={metrics.overall} perPerson={metrics.perPerson} />
+              <ChartsPanel data={rows} />
 
-          <div className="bg-white p-4 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
-            <h3 className="text-sm font-medium mb-3">Data Preview</h3>
-            <div className="overflow-auto">
-              <table className="min-w-full text-sm">
-                <thead className="bg-slate-50">
-                  <tr>
-                    <th className="p-2 text-left">Date</th>
-                    <th className="p-2 text-left">Person</th>
-                    <th className="p-2 text-right">Miles</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((r, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
-                      <td className="p-2">{r.date}</td>
-                      <td className="p-2">{r.person}</td>
-                      <td className="p-2 text-right">{Number(r.miles).toFixed(2)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="bg-white p-4 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
+                <h3 className="text-sm font-medium mb-3">Data Preview</h3>
+                <div className="overflow-auto">
+                  <table className="min-w-full text-sm">
+                    <thead className="bg-slate-50">
+                      <tr>
+                        <th className="p-2 text-left">Date</th>
+                        <th className="p-2 text-left">Person</th>
+                        <th className="p-2 text-right">Miles</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rows.map((r, i) => (
+                        <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                          <td className="p-2">{r.date}</td>
+                          <td className="p-2">{r.person}</td>
+                          <td className="p-2 text-right">{Number(r.miles).toFixed(2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  )}
-</main>
+      )}
+    </main>
 
   );
 }
