@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CSV Runner Dashboard (Next.js)
 
-## Getting Started
+## Project overview
+This is an implementation of the "CSV Runner Dashboard" assignment. Users upload CSVs with `date, person, miles run`. The app validates the CSV, shows overall and per-person metrics, provides charts (bar & line), and a data preview.
 
-First, run the development server:
+## Assumptions
+- CSV header names are exact: `date`, `person`, `miles run`.
+- Dates are parseable by `new Date(dateString)`.
+- Miles are non-negative numeric values.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Prerequisites
+- Node.js 18+ recommended
+- npm
+- No database required
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
+1. `git clone <repo>`
+2. `cd csv-runner-dashboard`
+3. `npm install`
+4. Create `.env` if you want custom config (none required by default).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Run
+- `npm run dev` — app runs at http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Verify acceptance checklist
+- Sample CSV: `public/sample.csv` is provided. Click "Load sample".
+- Overall & per-person charts: visible under Charts panel.
+- Metrics: top of page under Summary.
+- Error handling: try removing a header or changing a miles cell to "abc" to see errors.
 
-## Learn More
+## Features & limitations
+Works:
+- CSV parsing and validation
+- Visualizations (recharts)
+- Summary metrics (avg/min/max) overall and per person
+Known gaps:
+- No server-side persistence (not required)
+- Very large CSVs (>50k rows) may need streaming / server processing
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture & folder structure
+See project root. `pages/` has the UI; `components/` contains UI building blocks; `utils/parseCsv.js` handles parsing/validation.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Accessibility & UI
+- Buttons and inputs have clear labels.
+- Contrast uses Tailwind defaults; typography & spacing prioritize readability.
+- Table has proper headings.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- To integrate `shadcn/ui`, follow their setup and replace components with `Card`, `Button`, etc. The current design uses Tailwind classes compatible with shadcn patterns.
